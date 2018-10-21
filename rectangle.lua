@@ -11,7 +11,7 @@ function Rectangle.new(self, x, y, w, h)
 end
 
 function Rectangle.update(self, dt)
-	self.x = self.x + self.speed * dt
+
 end
 
 function Rectangle.draw(self)
