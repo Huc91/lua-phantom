@@ -8,14 +8,18 @@ function love.load()
     Object = require "classic"
     require "character"
     robot = Character(100, 100, 200, 50, 'robot')
+    require "enemy"
+    enemy = Enemy(100, 100, 200, 50, 'enemy', 200)
 end
 
 --[[ Run continuosly --]]
 function love.update(dt)
     robot:update(dt)
+    enemy:update(dt)
 end
 
 --[[ This function is also called continuously --]]
 function love.draw()
     robot:draw()
+    enemy:draw()
 end
