@@ -39,3 +39,15 @@ end
 function Character.draw(self)
   love.graphics.draw(self.image, self.x, self.y)
 end
+
+function Character:keyPressed(key)
+    --If the spacebar is pressed
+    if key == "space" then
+        --new instance of Bullet
+        start = {}
+        start.x = self.x
+        start.y = self.y
+        direction = self.direction
+        bullet = Bullet(start, direction)
+    end
+end
