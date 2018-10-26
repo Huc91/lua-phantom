@@ -27,13 +27,15 @@ end
 function love.draw()
     robot:draw()
     enemy:draw()
-    print(bullet)
     if bullet ~= nil then
-        print('fire')
         bullet:draw()
     end    
 end
 
 function love.keypressed(key)
     robot:keyPressed(key)
+end
+
+function love.keyreleased(key)
+    robot:keyReleased(key)
 end
