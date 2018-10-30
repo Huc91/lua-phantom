@@ -40,7 +40,10 @@ function Character.update(self, dt)
         start = {}
         start.x = self.x
         start.y = self.y
-        bullet = Bullet(start, self.direction)
+        charDimesion = {}
+        charDimesion.width = self.width
+        charDimesion.height = self.height
+        bullet = Bullet(start, self.direction, charDimesion)
     else
         bullet = nil
     end

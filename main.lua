@@ -7,7 +7,7 @@ function love.load()
     love.graphics.setBackgroundColor(0,0,0)
     Object = require "classic"
     require "character"
-    robot = Character(100, 100, 200, 50, 'robot')
+    robot = Character(100, 100, 64, 96, 'robot')
     require "enemy"
     enemy = Enemy(100, 100, 200, 50, 'enemy', 200)
     require "bullet"
@@ -25,9 +25,11 @@ end
 
 --[[ This function is also called continuously --]]
 function love.draw()
+    love.graphics.setColor(1, 1, 1)
     robot:draw()
     enemy:draw()
     if bullet ~= nil then
+        love.graphics.setColor(1, 0, 0, 0.7)
         bullet:draw()
     end    
 end
