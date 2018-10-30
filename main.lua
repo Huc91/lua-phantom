@@ -13,7 +13,8 @@ function love.load()
     enemy = Enemy(100, 100, 64, 64, 'enemy', 200, 100)
     enemies = {
         Enemy(100, 100, 64, 64, 'enemy', 200, 100),
-        Enemy(400, 100, 64, 64, 'enemy', 150, 200)
+        Enemy(400, 100, 64, 64, 'enemy', 150, 200),
+        Enemy(500, 10, 64, 64, 'enemy', 250, 90)
     }
     require "bullet"
     bullet = nil
