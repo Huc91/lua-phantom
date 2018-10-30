@@ -11,6 +11,10 @@ function love.load()
     robot = Character(100, 100, 64, 96, 'robot')
     require "enemy"
     enemy = Enemy(100, 100, 64, 64, 'enemy', 200, 100)
+    enemies = {
+        Enemy(100, 100, 64, 64, 'enemy', 200, 100),
+        Enemy(400, 100, 64, 64, 'enemy', 150, 200)
+    }
     require "bullet"
     bullet = nil
     energy = 150
@@ -21,13 +25,20 @@ end
 --[[ Run continuosly --]]
 function love.update(dt)
     robot:update(dt)
-    enemy:update(dt)
+
+    for i=1,#enemies do
+        enemies[i]:update(dt)
+    end
+
     if bullet ~= nil then
         energy = energy - 1
         bullet:update(dt)
-        if checkCollision(enemy, bullet) then
-            print('gotcha')
-            enemy:isHit(true)
+
+        for i=1,#enemies do
+            if checkCollision(enemies[i], bullet) then
+                print('gotcha')
+                enemies[i]:isHit(true)
+            end
         end
     else 
         if energy < (maxEnergy - 1) then
@@ -40,7 +51,11 @@ end
 function love.draw()
     love.graphics.setColor(1, 1, 1)
     robot:draw()
-    enemy:draw()
+
+    for i=1,#enemies do
+        enemies[i]:draw()
+    end    
+
     if bullet ~= nil then
         love.graphics.setColor(1, 0, 0, 0.7)
         bullet:draw()
