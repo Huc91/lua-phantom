@@ -36,6 +36,10 @@ function Character.update(self, dt)
         self.image = love.graphics.newImage(self.imageName)
     end
 
+    if energy <= 0 then
+        self.laser = false
+    end
+
     if self.laser then
         start = {}
         start.x = self.x
@@ -56,7 +60,7 @@ end
 
 function Character:keyPressed(key)
     --If the spacebar is pressed
-    if key == "space" then
+    if  key == "space" and energy > 0 then
         self.laser = true        
     end
 end
