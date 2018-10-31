@@ -8,19 +8,28 @@ function love.load()
     Object = require "classic"
     require "collision"
     require "character"
-    robot = Character(100, 100, 64, 96, 'robot')
     require "enemy"
+    require "bullet"
+    require "gui-battery"
+
+    robot = Character(100, 100, 64, 96, 'robot')
+    
     enemy = Enemy(100, 100, 64, 64, 'enemy', 200, 100)
     enemies = {
         Enemy(100, 100, 64, 64, 'enemy', 200, 100),
         Enemy(400, 100, 64, 64, 'enemy', 150, 200),
         Enemy(500, 10, 64, 64, 'enemy', 250, 90)
     }
-    require "bullet"
+
     bullet = nil
+
     energy = 150
     maxEnergy = 150
+    guiBattery = GUI_Battery(16, 16, energy, maxEnergy)
+
     gotcha = 0
+
+
 end
 
 --[[ Run continuosly --]]
@@ -46,6 +55,7 @@ function love.update(dt)
             energy = energy + 2
         end
     end
+    guiBattery:update(dt)
 end
 
 --[[ This function is also called continuously --]]
@@ -62,7 +72,7 @@ function love.draw()
         bullet:draw()
     end
     love.graphics.setColor(1, 1, 1)
-    love.graphics.print( energy, 16, 16)
+    guiBattery:draw()
 end
 
 function love.keypressed(key)
